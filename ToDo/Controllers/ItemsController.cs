@@ -55,7 +55,7 @@ namespace ToDoList.Controllers
         {
             Item thisItem = Item.Find(id);
             thisItem.Edit(Request.Form["newname"]);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //cleaner than View("Index"), as this avoids duplicate Post Update() triggers if user refreshes Index page
         }
     }
 }
