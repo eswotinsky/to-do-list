@@ -53,9 +53,17 @@ namespace ToDoList.Controllers
         [HttpPost("/items/{id}/update")]
         public ActionResult Update(int id)
         {
-            Item thisItem = Item.Find(id);
-            thisItem.Edit(Request.Form["newname"]);
-            return RedirectToAction("Index"); //cleaner than View("Index"), as this avoids duplicate Post Update() triggers if user refreshes Index page
+          Item thisItem = Item.Find(id);
+          thisItem.Edit(Request.Form["newname"]);
+          return RedirectToAction("Index"); //cleaner than View("Index"), as this avoids duplicate Post Update() triggers if user refreshes Index page
+        }
+
+        [HttpGet("/items/{id}/delete")]
+        public ActionResult Delete(int id)
+        {
+          Item thisItem = Item.Find(id);
+          thisItem.Delete();
+          return RedirectToAction("Index");
         }
     }
 }
