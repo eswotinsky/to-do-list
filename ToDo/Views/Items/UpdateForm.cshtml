@@ -1,9 +1,14 @@
-<h1>To Do List</h1>
-<hr />
-<h2>Edit category: @Model.GetDescription()</h2>
-<form action="/items/@Model.GetId()/update" method="post">
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+  <h1>To Do List</h1>
+  <hr />
+  <h2>Edit category: @Model.GetDescription()</h2>
+  <form action="/items/@Model.GetId()/update" method="post">
     <label for="name">Name:</label>
     <input type="text" name="newname" value="@Model.GetDescription()">
-    <button type="submit">Edit</button>
-</form>
-<h4><a href="/items">Return home</a></h4>
+    <button class="btn btn-primary"type="submit">Edit</button>
+  </form>
+  <h4><a href="/items">Return home</a></h4>
+</div>

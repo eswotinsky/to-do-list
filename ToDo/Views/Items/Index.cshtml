@@ -1,12 +1,23 @@
-<h1>To Do List</h1>
-<ul>
-  @foreach(var item in Model)
-  {
-    <li><a href="/items/@item.GetId()">@item.GetDescription()</a> | <a href="/items/@item.GetId()/update">Edit</a> | <a href="/items/@item.GetId()/delete">Delete</a></li>
-  }
-</ul>
-<a href="/items/new">Add a new item.</a>
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+<div class="row">
+  <div class="col-md-8">
 
-<form action="/items/delete" method="post">
-  <button type="submit" name="button">Clear All Items</button>
-</form>
+  <h1>To Do List</h1>
+  <ul class="list-group">
+    @foreach(var item in Model)
+    {
+      <li class="list-group-item"><strong><a href="/items/@item.GetId()">@item.GetDescription()</a></strong> | <a href="/items/@item.GetId()/update">Edit</a> | <a href="/items/@item.GetId()/delete">Delete</a></li>
+    }
+  </ul>
+  <a href="/items/new">Add a new item.</a>
+
+  <form action="/items/delete" method="post">
+    <button class="btn btn-danger" type="submit" name="button">Clear All Items</button>
+  </form>
+
+    </div>
+  </div>
+</div>
