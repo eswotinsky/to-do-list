@@ -6,8 +6,18 @@
   <h1>To Do List</h1>
   <h3>Add a new item:</h3>
   <form action="/items" method="post">
-    <label for="new-item">Item Description</label>
-    <input id="new-item" name="new-item" type="text">
+    <div class="form-group">
+      <label for="new-item">Item Description</label>
+      <input id="new-item" name="new-item" type="text">
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category">
+        <option value="Housework">Housework</option>
+        <option value="Business">Business</option>
+        <option value="Personal">Personal</option>
+      </select>
+    </div>
     <button class="btn btn-success" type="submit">Add item</button>
   </form>
 </div>
