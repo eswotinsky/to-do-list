@@ -1,0 +1,12 @@
+form.delete-item {
+  display: inline-block;
+  float: right;
+}
+
+.btn-warning {
+  padding: 0px 12px;
+}
+
+body {
+  background-color: paleturquoise;
+}

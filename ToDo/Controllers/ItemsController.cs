@@ -58,7 +58,7 @@ namespace ToDoList.Controllers
           return RedirectToAction("Index"); //cleaner than View("Index"), as this avoids duplicate Post Update() triggers if user refreshes Index page
         }
 
-        [HttpGet("/items/{id}/delete")]
+        [HttpPost("/items/{id}/delete")]
         public ActionResult Delete(int id)
         {
           Item thisItem = Item.Find(id);

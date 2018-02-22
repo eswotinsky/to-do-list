@@ -9,7 +9,7 @@
   <ul class="list-group">
     @foreach(var item in Model)
     {
-      <li class="list-group-item"><strong><a href="/items/@item.GetId()">@item.GetDescription()</a></strong> | <a href="/items/@item.GetId()/update">Edit</a> | <a href="/items/@item.GetId()/delete">Delete</a></li>
+      <li class="list-group-item"><strong><a href="/items/@item.GetId()">@item.GetDescription()</a></strong> | <a href="/items/@item.GetId()/update">Edit</a><form class="delete-item" action="/items/@item.GetId()/delete" method="post"><button type="submit" class="btn btn-warning">Delete</button></form> </li>
     }
   </ul>
   <a href="/items/new">Add a new item.</a>
