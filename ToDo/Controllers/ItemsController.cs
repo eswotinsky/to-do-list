@@ -30,7 +30,7 @@ namespace ToDoList.Controllers
         [HttpPost("/items")]
         public ActionResult Create()
         {
-          Item newItem = new Item (Request.Form["new-item"]);
+          Item newItem = new Item (Request.Form["new-item"], 1); //fix this later
           newItem.Save();
           List<Item> allItems = Item.GetAll();
           return View("Index", allItems);

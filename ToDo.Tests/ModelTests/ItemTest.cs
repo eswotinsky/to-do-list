@@ -11,6 +11,7 @@ namespace ToDoList.Tests
         public void Dispose()
         {
             Item.DeleteAll();
+            Category.DeleteAll();
         }
 
         public ItemTests()
@@ -29,7 +30,7 @@ namespace ToDoList.Tests
         public void GetDescription_ReturnsDescription_String()
         {
             string description = "Walk the dog.";
-            Item newItem = new Item(description);
+            Item newItem = new Item(description, 1);
 
             string result = newItem.GetDescription();
 
@@ -39,9 +40,9 @@ namespace ToDoList.Tests
         [TestMethod]
         public void Save_SavesToDatabase_ItemList()
         {
-          Item testItem = new Item("Mow the lawn");
-
+          Item testItem = new Item("Mow the lawn", 1);
           testItem.Save();
+
           List<Item> result = Item.GetAll();
           List<Item> testList = new List<Item>{testItem};
 
@@ -51,8 +52,8 @@ namespace ToDoList.Tests
         [TestMethod]
         public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Item()
         {
-          Item firstItem = new Item("Mow the lawn");
-          Item secondItem = new Item("Mow the lawn");
+          Item firstItem = new Item("Mow the lawn", 1);
+          Item secondItem = new Item("Mow the lawn", 1);
 
           Assert.AreEqual(firstItem, secondItem);
         }
@@ -62,8 +63,8 @@ namespace ToDoList.Tests
         {
             string description01 = "Walk the dog";
             string description02 = "Wash the dishes";
-            Item newItem1 = new Item(description01);
-            Item newItem2 = new Item(description02);
+            Item newItem1 = new Item(description01, 1);
+            Item newItem2 = new Item(description02, 1);
             newItem1.Save();
             newItem2.Save();
             List<Item> newList = new List<Item> { newItem1, newItem2 };
@@ -74,9 +75,9 @@ namespace ToDoList.Tests
         }
 
         [TestMethod]
-        public void Find_FindITemInDatabase_Item()
+        public void Find_FindsItemInDatabase_Item()
         {
-          Item testItem = new Item("Mow the lawn");
+          Item testItem = new Item("Mow the lawn", 1);
           testItem.Save();
 
           Item foundItem = Item.Find(testItem.GetId());
@@ -104,8 +105,8 @@ namespace ToDoList.Tests
         {
             string description01 = "Walk the dog";
             string description02 = "Wash the dishes";
-            Item newItem1 = new Item(description01);
-            Item newItem2 = new Item(description02);
+            Item newItem1 = new Item(description01, 1);
+            Item newItem2 = new Item(description02, 1);
             newItem1.Save();
             newItem2.Save();
             List<Item> newList = new List<Item> { newItem1 };
