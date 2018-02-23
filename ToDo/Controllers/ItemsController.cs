@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 
@@ -30,7 +31,7 @@ namespace ToDoList.Controllers
         [HttpPost("/items")]
         public ActionResult Create()
         {
-          Item newItem = new Item (Request.Form["new-item"], 1); //fix this later
+          Item newItem = new Item (Request.Form["new-item"], Int32.Parse(Request.Form["new-category"])); //fix this later
           newItem.Save();
           List<Item> allItems = Item.GetAll();
           return View("Index", allItems);
@@ -54,7 +55,7 @@ namespace ToDoList.Controllers
         public ActionResult Update(int id)
         {
           Item thisItem = Item.Find(id);
-          thisItem.Edit(Request.Form["newname"]);
+          thisItem.Edit(Request.Form["edit-name"], Int32.Parse(Request.Form["edit-category"]));
           return RedirectToAction("Index"); //cleaner than View("Index"), as this avoids duplicate Post Update() triggers if user refreshes Index page
         }
 

@@ -23,7 +23,6 @@ namespace ToDoList.Models
       return this.GetDescription().GetHashCode();
     }
 
-
     public string GetDescription()
     {
       return _description;
@@ -161,12 +160,12 @@ namespace ToDoList.Models
       return foundItem;
     }
 
-    public void Edit(string newDescription)
+    public void Edit(string newDescription, int newCategoryId)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE items SET description = @newDescription WHERE id=@searchId;";
+      cmd.CommandText = @"UPDATE items SET description = @newDescription, category_id = @newCategoryId WHERE id=@searchId;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
@@ -178,8 +177,14 @@ namespace ToDoList.Models
       description.Value = newDescription;
       cmd.Parameters.Add(description);
 
+      MySqlParameter categoryId = new MySqlParameter();
+      categoryId.ParameterName = "@newCategoryId";
+      categoryId.Value = newCategoryId;
+      cmd.Parameters.Add(categoryId);
+
       cmd.ExecuteNonQuery();
       _description = newDescription;
+      _categoryId = newCategoryId;
 
       conn.Close();
       if (conn != null)

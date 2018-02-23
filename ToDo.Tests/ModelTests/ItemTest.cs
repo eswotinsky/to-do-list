@@ -93,7 +93,7 @@ namespace ToDoList.Tests
           testItem.Save();
           string secondDescription = "Mow the lawn";
 
-          testItem.Edit(secondDescription);
+          testItem.Edit(secondDescription, 1);
 
           string result = Item.Find(testItem.GetId()).GetDescription();
 
