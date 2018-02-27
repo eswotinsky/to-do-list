@@ -120,7 +120,6 @@ namespace ToDoList.Tests
         [TestMethod]
         public void Delete_DeletesItemAssociationsFromDatabase_ItemList()
         {
-            //Arrange
             Category testCategory = new Category("Home stuff");
             testCategory.Save();
 
@@ -128,14 +127,12 @@ namespace ToDoList.Tests
             Item testItem = new Item(testDescription);
             testItem.Save();
 
-            //Act
             testItem.AddCategory(testCategory);
             testItem.Delete();
 
             List<Item> resultCategoryItems = testCategory.GetItems();
             List<Item> testCategoryItems = new List<Item> {};
 
-            //Assert
             CollectionAssert.AreEqual(testCategoryItems, resultCategoryItems);
         }
 
